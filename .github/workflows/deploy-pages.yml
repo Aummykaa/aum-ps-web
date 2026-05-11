@@ -1,5 +1,7 @@
 # Builds a static Next.js export and publishes to GitHub Pages.
 #
+# Expects package.json at the repository root (not under a subfolder such as aum-ps-web/).
+#
 # Prerequisites in the repo: Settings → Pages → Source → GitHub Actions.
 # Repository Pages URL (project site): https://<owner>.github.io/<repo>/
 # User site (repo named <user>.github.io): https://<user>.github.io/
