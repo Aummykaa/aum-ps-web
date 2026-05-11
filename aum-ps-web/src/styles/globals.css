@@ -24,7 +24,8 @@
   --color-body: var(--text);
   --color-label: var(--muted);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   --radius-soft: 0.75rem;
   --radius-softer: 1rem;
   --radius-pill: 9999px;

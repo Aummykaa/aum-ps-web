@@ -1,3 +1,5 @@
+import { CTAButton } from "@/components/ui/cta-button";
+
 const RESUME_PATH = "/resume.pdf";
 
 function PdfGlyph({ className }: { className?: string }) {
@@ -46,23 +48,21 @@ export function ResumeDownloadSection({
             id="download-cv-heading"
             className="text-balance text-2xl font-semibold tracking-tight text-[#1c3521] sm:text-[1.65rem] sm:leading-snug lg:text-[1.85rem]"
           >
-            Interested in my full experience?
+            Interested in my one-page résumé?
           </h2>
-          <p className="mt-5 max-w-md text-pretty text-base leading-relaxed text-[#1c3521]/88 sm:text-lg">
-            You can download my full résumé below.
-          </p>
           <div className="mt-10 sm:mt-12">
-            <a
+            <CTAButton
               href={RESUME_PATH}
+              preset="download"
               download="resume.pdf"
-              className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#ab0608] px-9 py-3.5 text-sm font-semibold text-white shadow-[0_2px_16px_-4px_rgba(171,6,8,0.35)] transition-[transform,box-shadow,background-color,opacity] duration-300 ease-out hover:bg-[#8a0507] hover:shadow-[0_12px_36px_-14px_rgba(171,6,8,0.4)] motion-safe:hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#90b5a2]/70 focus-visible:ring-offset-[6px] focus-visible:ring-offset-background active:translate-y-0"
+              ariaLabel="Download résumé PDF"
             >
               <PdfGlyph className="text-white/95" />
-              Download CV
+              Download Résumé
               <span className="sr-only">
                 Downloads résumé PDF from this site
               </span>
-            </a>
+            </CTAButton>
           </div>
         </div>
       </div>

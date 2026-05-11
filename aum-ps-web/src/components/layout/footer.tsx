@@ -1,9 +1,4 @@
-const LINKEDIN_URL =
-  process.env.NEXT_PUBLIC_LINKEDIN_URL ??
-  "https://www.linkedin.com/in/parnchanok-skulbenja-44966b108";
-const MEDIUM_URL =
-  process.env.NEXT_PUBLIC_MEDIUM_ARTICLES_URL ??
-  "https://medium.com/@AumPS_VisualEcho";
+import { SITE_LINKEDIN_URL, SITE_MEDIUM_URL } from "@/lib/config/site-urls";
 
 const footerLinks = [
   {
@@ -12,18 +7,18 @@ const footerLinks = [
     decoration: "decoration-gold/60",
   },
   {
-    href: LINKEDIN_URL,
+    href: SITE_LINKEDIN_URL,
     label: "LinkedIn",
     decoration: "decoration-mint/70",
   },
   {
-    href: MEDIUM_URL,
+    href: SITE_MEDIUM_URL,
     label: "Medium",
     decoration: "decoration-gold/60",
   },
 ] as const;
 
-export function SiteFooter() {
+export function Footer() {
   const year = new Date().getFullYear();
 
   return (
@@ -50,6 +45,9 @@ export function SiteFooter() {
                 className={`text-[#1c3521] transition-opacity duration-200 hover:opacity-75 hover:underline ${decoration} underline-offset-4`}
               >
                 {label}
+                {href.startsWith("http") ? (
+                  <span className="sr-only"> (opens in a new tab)</span>
+                ) : null}
               </a>
             </li>
           ))}

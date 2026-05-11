@@ -1,22 +1,24 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import { EducationPsychologyJourney } from "@/components/education-psychology-journey";
-
-const btnShadow =
-  "shadow-[0_2px_14px_-3px_rgba(171,6,8,0.18)] hover:shadow-[0_8px_28px_-6px_rgba(171,6,8,0.22)]";
+import { EducationPsychologyJourney } from "@/components/education/education-psychology-journey";
+import { CTAButton } from "@/components/ui/cta-button";
+import { SectionTitle } from "@/components/ui/section-title";
+import { HOME_BG_BLUR_DATA_URL } from "@/lib/image-placeholders";
 
 export default function Home() {
   return (
     <div className="relative flex flex-1 flex-col">
       <div className="pointer-events-none fixed inset-0 z-0 min-h-[100dvh] w-full overflow-hidden">
         <Image
-          src="/home-bg.png"
+          src="/home-bg.webp"
           alt=""
           fill
-          sizes="100vw"
-          className="object-cover object-left sm:object-[30%_center]"
           priority
+          quality={85}
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL={HOME_BG_BLUR_DATA_URL}
+          className="object-cover object-left sm:object-[30%_center]"
         />
         <div
           className="absolute inset-0 bg-gradient-to-r from-background from-[0%] via-background/[0.92] via-[44%] to-background/12 sm:via-[48%]"
@@ -38,7 +40,7 @@ export default function Home() {
               className="animate-fade-rise flex flex-col gap-10"
               style={{ animationDelay: "40ms" }}
             >
-              <div className="min-w-0">
+              <header className="min-w-0">
                 <h1
                   id="hero-heading"
                   className="text-balance text-[2.125rem] font-normal leading-[1.12] tracking-[-0.02em] sm:text-5xl lg:text-[3.25rem]"
@@ -50,22 +52,25 @@ export default function Home() {
                     Parnchanok Skulbenja
                   </span>
                 </h1>
-                <p className="mt-5 max-w-xl text-pretty italic text-base leading-relaxed text-text drop-shadow-[0_1px_10px_rgba(255,255,255,0.65)] sm:text-lg">
-                  “Passionate about creating meaningful impact, understanding people
-                  and the human mind, and turning complex problems into tangible
-                  solutions.”
-                </p>
-              </div>
+                <blockquote className="mt-5 max-w-xl border-none p-0 text-inherit font-[inherit] not-italic">
+                  <p className="italic text-base leading-relaxed text-text drop-shadow-[0_1px_10px_rgba(255,255,255,0.65)] sm:text-lg">
+                    &ldquo;Passionate about creating meaningful impact,
+                    understanding people and the human mind, and turning complex
+                    problems into tangible solutions.&rdquo;
+                  </p>
+                </blockquote>
+              </header>
             </div>
 
             <div className="relative mt-[3.75rem] max-w-[40rem] sm:mt-16">
-              <h2
+              <SectionTitle
                 id="summary-heading"
-                className="animate-fade-rise text-xs font-semibold uppercase tracking-[0.28em] text-label"
-                style={{ animationDelay: "120ms" }}
+                variant="heroEyebrow"
+                animate
+                animationDelayMs={120}
               >
                 Professional summary
-              </h2>
+              </SectionTitle>
               <div
                 className="animate-fade-rise mt-6 text-pretty text-base leading-[1.85] text-text sm:text-[1.0625rem]"
                 style={{ animationDelay: "160ms" }}
@@ -76,26 +81,23 @@ export default function Home() {
                   wellness, retail, automotive, and loyalty platforms. Skilled in
                   product strategy, AI-assisted rapid prototyping, Agile delivery,
                   user research, and cross-functional collaboration, with a strong
-                  human-centered mindset and a passion for solving complex
-                  problems through practical digital solutions.
+                  human-centered mindset and a passion for solving complex problems
+                  through practical digital solutions.
                 </p>
               </div>
               <div
                 className="animate-fade-rise mt-12"
                 style={{ animationDelay: "200ms" }}
               >
-                <Link
-                  href="/cv"
-                  className={`group inline-flex items-center justify-center gap-2 rounded-full bg-[#ab0608] px-8 py-3.5 text-sm font-semibold text-white transition-[transform,box-shadow,background-color] duration-300 hover:bg-[#8a0507] ${btnShadow} motion-safe:hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent`}
-                >
+                <CTAButton href="/cv" preset="hero">
                   View My CV
                   <span
-                    className="inline-block transition-transform duration-300 group-hover:translate-x-0.5"
+                    className="inline-block transition-transform duration-300 motion-safe:group-hover:translate-x-0.5"
                     aria-hidden
                   >
                     →
                   </span>
-                </Link>
+                </CTAButton>
               </div>
             </div>
           </div>

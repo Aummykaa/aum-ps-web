@@ -4,9 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const LINKEDIN_URL =
-  process.env.NEXT_PUBLIC_LINKEDIN_URL ??
-  "https://www.linkedin.com/in/parnchanok-skulbenja-44966b108";
+import { SITE_LINKEDIN_URL } from "@/lib/config/site-urls";
 
 type NavItem =
   | { href: string; label: string; kind: "internal" }
@@ -15,7 +13,7 @@ type NavItem =
 const navItems: NavItem[] = [
   { href: "/", label: "Home", kind: "internal" },
   { href: "/cv", label: "CV", kind: "internal" },
-  { href: LINKEDIN_URL, label: "LinkedIn", kind: "external" },
+  { href: SITE_LINKEDIN_URL, label: "LinkedIn", kind: "external" },
 ];
 
 function navLinkClasses(active: boolean) {
@@ -54,7 +52,7 @@ function isActive(pathname: string, item: NavItem): boolean {
   return pathname === item.href;
 }
 
-export function SiteHeader() {
+export function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -173,12 +171,12 @@ export function SiteHeader() {
 
       <div
         id="mobile-nav"
+        inert={!menuOpen ? true : undefined}
         className={`md:hidden motion-safe:transition-[max-height,opacity] motion-safe:duration-[420ms] motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
           menuOpen
             ? "max-h-[min(90vh,22rem)] overflow-y-auto border-t border-[#1c3521]/[0.05] opacity-100"
             : "pointer-events-none max-h-0 overflow-hidden border-t border-transparent opacity-0"
         }`}
-        aria-hidden={!menuOpen}
       >
         <nav
           className="flex flex-col items-center gap-2 px-5 py-8 sm:px-8"

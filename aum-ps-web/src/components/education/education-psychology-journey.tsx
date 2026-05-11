@@ -1,41 +1,13 @@
-/** Replace with your Medium profile, publication, or article list URL. */
-const mediumPsychologyArticlesUrl =
-  process.env.NEXT_PUBLIC_MEDIUM_ARTICLES_URL ??
-  "https://medium.com/@AumPS_VisualEcho";
-
-const ACCENT_PRIMARY = "#ab0608";
-const ACCENT_MINT = "#90b5a2";
-const ACCENT_CORAL = "#cb484b";
-
-type EducationTimelineEntry = {
-  id: string;
-  degree: string;
-  institution: string;
-  periodLabel: string;
-  current: boolean;
-  body: string;
-};
-
-const educationTimeline: EducationTimelineEntry[] = [
-  {
-    id: "be-ice",
-    degree: "B.E., Information and Communication Engineering",
-    institution: "Chulalongkorn University",
-    periodLabel: "Aug 2013 — May 2017",
-    current: false,
-    body:
-      "Relevant Coursework: Software Development, Technology Management, Networking, and Telecommunications",
-  },
-  {
-    id: "ma-counseling",
-    degree: "M.A., Counseling Psychology",
-    institution: "Ramkhamhaeng University",
-    periodLabel: "Expected 2027",
-    current: true,
-    body:
-      "Relevant Coursework: Counseling Psychology theories and therapeutic approaches, including Cognitive Behavioral Therapy (CBT), Satir Model, Solution-Focused Brief Therapy (SFBT), Existential Therapy, and Gestalt Therapy, along with Statistics, Mental Health, Positive Psychology, Crisis Counseling, and Group and Family Counseling.",
-  },
-];
+import { CTAButton } from "@/components/ui/cta-button";
+import { SectionTitle } from "@/components/ui/section-title";
+import {
+  TimelineCard,
+  TimelineMarker,
+  TimelineRail,
+} from "@/components/ui/timeline-shell";
+import { educationTimelineEntries } from "@/data/education-timeline";
+import { SITE_MEDIUM_URL } from "@/lib/config/site-urls";
+import { TIMELINE_PRIMARY } from "@/lib/config/timeline-accents";
 
 export function EducationPsychologyJourney() {
   return (
@@ -44,19 +16,20 @@ export function EducationPsychologyJourney() {
       className="bg-transparent px-4 py-[5rem] sm:px-6 sm:py-24 lg:px-8"
     >
       <div className="mx-auto max-w-5xl">
-        <h2
+        <SectionTitle
           id="education-heading"
-          className="animate-fade-rise text-xs font-semibold uppercase tracking-[0.28em] text-label"
-          style={{ animationDelay: "40ms" }}
+          variant="heroEyebrow"
+          animate
+          animationDelayMs={40}
         >
           Education &amp; psychology journey
-        </h2>
-        <p
+        </SectionTitle>
+        <h3
           className="animate-fade-rise mt-5 max-w-3xl text-pretty text-2xl font-semibold leading-snug tracking-tight text-text sm:text-[1.75rem]"
           style={{ animationDelay: "80ms" }}
         >
           Journey from Software Development to Understanding the Human Mind
-        </p>
+        </h3>
         <div
           className="animate-fade-rise mt-6 max-w-[40rem] space-y-6 text-pretty text-base leading-[1.85] text-text sm:text-[1.0625rem]"
           style={{ animationDelay: "120ms" }}
@@ -74,41 +47,20 @@ export function EducationPsychologyJourney() {
           </p>
         </div>
 
-        <ol
-          className="relative mt-9 max-w-3xl pl-0 lg:mt-11"
-          style={{
-            borderLeftWidth: 2,
-            borderLeftStyle: "solid",
-            borderLeftColor: `${ACCENT_MINT}55`,
-          }}
-        >
-          {educationTimeline.map((entry, index) => (
+        <TimelineRail>
+          {educationTimelineEntries.map((entry, index) => (
             <li
               key={entry.id}
               className={`animate-fade-rise relative pb-12 pl-9 sm:pl-11 ${
-                index === educationTimeline.length - 1 ? "pb-0" : ""
+                index === educationTimelineEntries.length - 1 ? "pb-0" : ""
               }`}
               style={{
                 animationDelay: index === 0 ? "160ms" : "220ms",
               }}
             >
-              <span
-                className="absolute -left-[10px] top-1.5 flex h-[18px] w-[18px] rounded-full border-2 bg-background"
-                style={
-                  entry.current
-                    ? {
-                        borderColor: ACCENT_PRIMARY,
-                        boxShadow: `0 0 0 3px ${ACCENT_MINT}40, 0 0 0 1px ${ACCENT_CORAL}30`,
-                      }
-                    : {
-                        borderColor: `${ACCENT_MINT}b3`,
-                        boxShadow: `inset 0 0 0 1px ${ACCENT_CORAL}35`,
-                      }
-                }
-                aria-hidden
-              />
+              <TimelineMarker current={entry.current} />
 
-              <div className="rounded-xl border border-text/[0.06] bg-background/55 px-4 py-4 sm:px-5 sm:py-5">
+              <TimelineCard>
                 <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                   <h3 className="text-base font-semibold text-text sm:text-lg">
                     {entry.degree}
@@ -117,8 +69,8 @@ export function EducationPsychologyJourney() {
                     <span
                       className="rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 ring-[#ab0608]/35"
                       style={{
-                        backgroundColor: `${ACCENT_PRIMARY}10`,
-                        color: ACCENT_PRIMARY,
+                        backgroundColor: `${TIMELINE_PRIMARY}10`,
+                        color: TIMELINE_PRIMARY,
                       }}
                     >
                       In progress
@@ -137,10 +89,10 @@ export function EducationPsychologyJourney() {
                     {entry.body}
                   </p>
                 </div>
-              </div>
+              </TimelineCard>
             </li>
           ))}
-        </ol>
+        </TimelineRail>
 
         <div
           className="animate-fade-rise mt-16 max-w-[40rem] rounded-[1.25rem] border border-text/[0.09] bg-background p-8 sm:p-10"
@@ -153,17 +105,16 @@ export function EducationPsychologyJourney() {
             Writing has become another way for me to reflect, and to understand
             both people and myself more deeply.
           </p>
-          <a
-            href={mediumPsychologyArticlesUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-[#ab0608] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_2px_14px_-3px_rgba(171,6,8,0.18)] transition-[transform,box-shadow,background-color] duration-300 hover:bg-[#8a0507] motion-safe:hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          <CTAButton
+            href={SITE_MEDIUM_URL}
+            preset="section"
+            className="mt-8"
           >
             Read on Medium
             <span className="text-xs text-white/90" aria-hidden>
               ↗
             </span>
-          </a>
+          </CTAButton>
         </div>
       </div>
     </section>

@@ -1,17 +1,16 @@
-import type { Metadata } from "next";
-import { Archivo_Black, Geist, Geist_Mono } from "next/font/google";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
-import "./globals.css";
+import type { Metadata, Viewport } from "next";
+import { Archivo_Black, Geist } from "next/font/google";
+
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { getSiteOrigin } from "@/lib/site-url";
+
+import "@/styles/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 const archivoBlack = Archivo_Black({
@@ -21,13 +20,43 @@ const archivoBlack = Archivo_Black({
   display: "swap",
 });
 
+const metadataBase = getSiteOrigin();
+const canonicalUrl = new URL("/", metadataBase).toString();
+const ogLocale = "en_US";
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c3521" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
+  metadataBase,
+  alternates: { canonical: canonicalUrl },
   title: {
     default: "Parnchanok Skulbenja (Aum)",
     template: "%s · Parnchanok Skulbenja",
   },
   description:
     "Engineer and counseling psychology learner — building meaningful impact through people-centered problem solving.",
+  openGraph: {
+    type: "website",
+    locale: ogLocale,
+    url: canonicalUrl,
+    siteName: "Parnchanok Skulbenja",
+    title: "Parnchanok Skulbenja (Aum)",
+    description:
+      "Engineer and counseling psychology learner — building meaningful impact through people-centered problem solving.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Parnchanok Skulbenja (Aum)",
+    description:
+      "Engineer and counseling psychology learner — building meaningful impact through people-centered problem solving.",
+  },
 };
 
 export default function RootLayout({
@@ -39,7 +68,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${geistMono.variable} ${archivoBlack.variable} h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${archivoBlack.variable} h-full scroll-smooth antialiased`}
     >
       <body className="relative flex min-h-full flex-col bg-background font-sans text-text leading-relaxed tracking-normal antialiased">
         <a
@@ -48,15 +77,15 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SiteHeader />
+        <Navbar />
         <main
           id="main-content"
-          className="flex flex-1 flex-col focus:outline-none"
+          className="flex flex-1 flex-col outline-none ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mint/65 focus-visible:ring-offset-2"
           tabIndex={-1}
         >
           {children}
         </main>
-        <SiteFooter />
+        <Footer />
       </body>
     </html>
   );
