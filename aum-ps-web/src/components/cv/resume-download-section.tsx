@@ -1,0 +1,71 @@
+const RESUME_PATH = "/resume.pdf";
+
+function PdfGlyph({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      aria-hidden
+    >
+      <path
+        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 2v6h6M9 13h6M9 17h6M9 9h2"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function ResumeDownloadSection({
+  animationDelayMs = 220,
+}: {
+  animationDelayMs?: number;
+}) {
+  return (
+    <section
+      aria-labelledby="download-cv-heading"
+      className="animate-fade-rise"
+      style={{ animationDelay: `${animationDelayMs}ms` }}
+    >
+      <div className="rounded-[1.5rem] border border-text/[0.08] bg-gradient-to-b from-mint/[0.12] to-background px-6 py-14 sm:px-10 sm:py-16 lg:px-14 lg:py-[4.5rem]">
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <h2
+            id="download-cv-heading"
+            className="text-balance text-2xl font-semibold tracking-tight text-[#1c3521] sm:text-[1.65rem] sm:leading-snug lg:text-[1.85rem]"
+          >
+            Interested in my full experience?
+          </h2>
+          <p className="mt-5 max-w-md text-pretty text-base leading-relaxed text-[#1c3521]/88 sm:text-lg">
+            You can download my full résumé below.
+          </p>
+          <div className="mt-10 sm:mt-12">
+            <a
+              href={RESUME_PATH}
+              download="resume.pdf"
+              className="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#ab0608] px-9 py-3.5 text-sm font-semibold text-white shadow-[0_2px_16px_-4px_rgba(171,6,8,0.35)] transition-[transform,box-shadow,background-color,opacity] duration-300 ease-out hover:bg-[#8a0507] hover:shadow-[0_12px_36px_-14px_rgba(171,6,8,0.4)] motion-safe:hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#90b5a2]/70 focus-visible:ring-offset-[6px] focus-visible:ring-offset-background active:translate-y-0"
+            >
+              <PdfGlyph className="text-white/95" />
+              Download CV
+              <span className="sr-only">
+                Downloads résumé PDF from this site
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
