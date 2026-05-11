@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* Design system — minimal, calm, sophisticated, human-centered */
+:root {
+  --background: #ffffff;
+  --primary: #ab0608;
+  --sage: #90b5a2;
+  --coral: #cb484b;
+  --text: #1c3521;
+  --muted: #1c3521;
+  --surface: #f4f9f7;
+  --surface-warm: #faf7f7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-brand: var(--primary);
+  --color-gold: var(--coral);
+  --color-mint: var(--sage);
+  --color-surface: var(--surface);
+  --color-surface-warm: var(--surface-warm);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-body: var(--text);
+  --color-label: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --radius-soft: 0.75rem;
+  --radius-softer: 1rem;
+  --radius-pill: 9999px;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-feature-settings: "kern" 1;
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-rise {
+  animation: fade-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-rise {
+    animation: none;
+  }
+}
+
+@keyframes journey-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-journey-panel {
+  animation: journey-panel-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-journey-panel {
+    animation: none;
+  }
+}
