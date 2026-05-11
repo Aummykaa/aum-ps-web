@@ -5,18 +5,22 @@ import { HowIWork } from "@/components/cv/how-i-work";
 import { ResumeDownloadSection } from "@/components/cv/resume-download-section";
 import { ExperienceTimeline } from "@/components/experience/experience-timeline";
 import { SectionTitle } from "@/components/ui/section-title";
+import { withBasePath } from "@/lib/base-path";
 import { CV_BG_BLUR_DATA_URL } from "@/lib/image-placeholders";
+import { getSiteUrl } from "@/lib/site-url";
+
+const cvUrl = getSiteUrl("cv");
 
 export const metadata: Metadata = {
   title: "My path",
   description:
     "How I work and grow — journey, experience, and résumé in one narrative.",
-  alternates: { canonical: "/cv" },
+  alternates: { canonical: cvUrl },
   openGraph: {
     title: "My path · Parnchanok Skulbenja",
     description:
       "How I work and grow — journey, experience, and résumé in one narrative.",
-    url: "/cv",
+    url: cvUrl,
   },
 };
 
@@ -25,7 +29,7 @@ export default function CVPage() {
     <div className="relative flex flex-1 flex-col">
       <div className="pointer-events-none fixed inset-0 z-0 min-h-[100dvh] w-full overflow-hidden">
         <Image
-          src="/cv-bg.webp"
+          src={withBasePath("/cv-bg.webp")}
           alt=""
           fill
           priority

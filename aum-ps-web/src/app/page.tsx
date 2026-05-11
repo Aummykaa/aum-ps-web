@@ -3,6 +3,7 @@ import Image from "next/image";
 import { EducationPsychologyJourney } from "@/components/education/education-psychology-journey";
 import { CTAButton } from "@/components/ui/cta-button";
 import { SectionTitle } from "@/components/ui/section-title";
+import { withBasePath } from "@/lib/base-path";
 import { HOME_BG_BLUR_DATA_URL } from "@/lib/image-placeholders";
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
     <div className="relative flex flex-1 flex-col">
       <div className="pointer-events-none fixed inset-0 z-0 min-h-[100dvh] w-full overflow-hidden">
         <Image
-          src="/home-bg.webp"
+          src={withBasePath("/home-bg.webp")}
           alt=""
           fill
           priority

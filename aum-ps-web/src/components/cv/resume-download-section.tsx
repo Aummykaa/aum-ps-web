@@ -1,4 +1,5 @@
 import { CTAButton } from "@/components/ui/cta-button";
+import { withBasePath } from "@/lib/base-path";
 
 const RESUME_PATH = "/resume.pdf";
 
@@ -52,7 +53,7 @@ export function ResumeDownloadSection({
           </h2>
           <div className="mt-10 sm:mt-12">
             <CTAButton
-              href={RESUME_PATH}
+              href={withBasePath(RESUME_PATH)}
               preset="download"
               download="resume.pdf"
               ariaLabel="Download résumé PDF"

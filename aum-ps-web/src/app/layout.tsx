@@ -3,7 +3,7 @@ import { Archivo_Black, Geist } from "next/font/google";
 
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { getSiteOrigin } from "@/lib/site-url";
+import { getSiteOrigin, getSiteUrl } from "@/lib/site-url";
 
 import "@/styles/globals.css";
 
@@ -21,7 +21,7 @@ const archivoBlack = Archivo_Black({
 });
 
 const metadataBase = getSiteOrigin();
-const canonicalUrl = new URL("/", metadataBase).toString();
+const canonicalUrl = getSiteUrl("");
 const ogLocale = "en_US";
 
 export const viewport: Viewport = {
