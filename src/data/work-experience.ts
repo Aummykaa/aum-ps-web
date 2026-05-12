@@ -97,8 +97,8 @@ export const PLACEHOLDER_EXPERIENCES: ExperienceItem[] = [
     id: "exxon",
     role: "System Change Coordinator",
     organization: "ExxonMobil Limited (Esso Smiles Thailand)",
-    startLabel: "Oct 2021",
-    endLabel: "Aug 2022",
+    startLabel: "Aug 2017",
+    endLabel: "Sep 2021",
     current: false,
     summary:
       "Loyalty and portable EDC experience design—field research with pump attendants and territory managers.",
