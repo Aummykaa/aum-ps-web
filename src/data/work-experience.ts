@@ -22,7 +22,9 @@ export const PLACEHOLDER_EXPERIENCES: ExperienceItem[] = [
     summary:
       "Leading a digital agricultural product lane with a focus on validation in real farming contexts.",
     achievements: [
-      "Built and validated a crop monitoring product prototype using Replit and ChatGPT, conducting field tests, together with user interviews with farmers to evaluate usability, crop monitoring workflows, and feature effectiveness in actual farming environments.",
+      "Led product discovery and rapid prototyping for an AI-assisted crop monitoring solution, conducting field research and farmer interviews to validate user needs, workflows, and product concepts in real farming environments.",
+      "Worked closely with sales teams and analyzed user behavior through product analytics and tracking dashboards to identify customer insights, improve adoption and retention, and prioritize enhancements with developers and designers.",
+      "Conducted UAT testing, coordinated production releases, and monitored post-release product performance and customer satisfaction to support continuous product improvement.",
     ],
   },
   {
